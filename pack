@@ -5,8 +5,14 @@
 # fetch the current date
 CURRENT_DATE=$(date +%Y-%m-%d)
 
-# fetch the filename
-FILENAME=$(basename $(pwd))
+# fetch the application file basename
+BASENAME=$(basename $(pwd))
+
+# count the number of versions of the filename
+VERSION_COUNT=$(($(find ./dist -type f -name "*$BASENAME*.zip" | wc -l)+1))
+
+# compose the (final) filename
+FILENAME=$BASENAME-$CURRENT_DATE-v$VERSION_COUNT.zip
 
 # remove the contents of the build/ directory
 rm -rf build/*
@@ -21,7 +27,7 @@ cp -rf credentials/ src/ tests/ main.py requirements.txt build/
 cd build
 
 # zip the application contents
-zip -r ../dist/$FILENAME-$CURRENT_DATE.zip .
+zip -r ../dist/$FILENAME .
 
 # return to the application root directory
 cd ..
