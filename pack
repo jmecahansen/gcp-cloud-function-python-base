@@ -9,7 +9,7 @@ CURRENT_DATE=$(date +%Y-%m-%d)
 BASENAME=$(basename $(pwd))
 
 # count the number of versions of the filename
-VERSION_COUNT=$(($(find ./dist -type f -name "*$BASENAME*.zip" | wc -l)+1))
+VERSION_COUNT=$(($(find ./dist -type f -name "*$BASENAME-$CURRENT_DATE*.zip" | wc -l)+1))
 
 # compose the (final) filename
 FILENAME=$BASENAME-$CURRENT_DATE-v$VERSION_COUNT.zip
