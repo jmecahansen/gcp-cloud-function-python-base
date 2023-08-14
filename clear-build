@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# script to clear the build/ directory contents
+
+# remove the contents of the build/ directory
+rm -rf build/*

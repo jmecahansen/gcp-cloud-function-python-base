@@ -1,0 +1,24 @@
+#!/bin/sh
+
+# script to pack the application contents (files, scripts, etc.) into a .zip file for uploading as a Cloud Function
+
+# fetch the current date
+CURRENT_DATE=$(date +%Y-%m-%d)
+
+# remove the contents of the build/ directory
+rm -rf build/*
+
+# install all dependencies into the build/ directory
+pip install -t build/ -r requirements.txt
+
+# copy all application contents to the build/ directory
+cp -rf credentials/ src/ tests/ main.py requirements.txt build/
+
+# enter the build/ directory
+cd build
+
+# zip the application contents
+zip -r ../dist/ven-ga3-bigquery-uploader-$CURRENT_DATE.zip .
+
+# return to the application root directory
+cd ..
