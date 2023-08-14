@@ -5,6 +5,9 @@
 # fetch the current date
 CURRENT_DATE=$(date +%Y-%m-%d)
 
+# fetch the filename
+FILENAME=$(basename $(pwd))
+
 # remove the contents of the build/ directory
 rm -rf build/*
 
@@ -18,7 +21,7 @@ cp -rf credentials/ src/ tests/ main.py requirements.txt build/
 cd build
 
 # zip the application contents
-zip -r ../dist/ven-ga3-bigquery-uploader-$CURRENT_DATE.zip .
+zip -r ../dist/$FILENAME-$CURRENT_DATE.zip .
 
 # return to the application root directory
 cd ..
