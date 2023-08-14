@@ -14,6 +14,6 @@ def cloud_function(request):
     """
 
     try:
-        # here goes your code
+        pass  # replace this with your code
     except Exception as e:
         return f"{e}\n\n{format_exc()}", 500
