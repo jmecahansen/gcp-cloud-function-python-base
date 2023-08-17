@@ -40,7 +40,7 @@ def test_response_without_payload_matches_expectation(code: int,
                                                       message: str,
                                                       expectation: str):
     """
-    test the response (without message or payload) matches its expectation
+    test the response (without payload) matches its expectation
     :param code: the HTTP response code
     :param message: the message included with the response
     :param expectation: the expected JSON-encoded output
@@ -71,7 +71,7 @@ def test_response_matches_expectation(code: int,
                                       payload: dict or list,
                                       expectation: str):
     """
-    test the response (without message or payload) matches its expectation
+    test the response matches its expectation
     :param code: the HTTP response code
     :param message: the message included with the response
     :param payload: the payload included with the response
