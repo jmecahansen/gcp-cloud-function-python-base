@@ -48,18 +48,18 @@ The real magic happens in `src/application.py` (within the `run()` method) so, u
 don't need to touch neither `app.py` nor `main.py`.
 
 ## I wrote and tested my application. Now what?
-The only two things left to do is to pack your application contents into a .zip file and deploy it onto Cloud 
-Functions.
+The only thing left to do, before uploading to Cloud Functions, is to pack your application contents into a .zip file.
 
 ### Packing your application
-This template includes a set of support scripts (`clear-all`, `clear-build`, `clear-dist` and `pack`) and two 
-directories (`build/` and `dist/`) to build the .zip file.
+This template includes a set of directories: `build/` (where all application files are copied and/or installed before 
+zipping them) and `dist/` (where the resulting .zip files are stored). It also includes a set of support scripts: 
+`clear-all` (which clears both `build/` and `dist/` directories), `clear-build` (which clears the `build/` directory), 
+`clear-dist` (which clears the `dist/` directory) and `pack` (which installs the Python modules your application needs 
+(along with some other libraries), copy your application files and compresses the contents of the `build/` folder and 
+write the resulting .zip file onto the `dist/` folder with the current date and version number encoded in its name). 
 
-In order to pack your application, you just need to execute this on the terminal: `./pack`. This will install the Python
-modules your application needs (along with some other libraries) and copy your application files to the `build/` folder.
-
-Once done, it will compress the contents of the `build/` folder and write the resulting .zip file onto the `dist/` 
-folder with the current date and version number encoded in its name. An example of this would be 
+In order to pack your application, you just need to execute this on the terminal: `./pack`. Once finished, you will find
+your application packed in the `dist/` folder. An example of a packed application file would be 
 `gcp-cloud-function-python-base-2023-08-17-v1.zip`. The only thing left for you is to drop that file onto your Cloud
 Function to create (or update) it and that's all :)
 
