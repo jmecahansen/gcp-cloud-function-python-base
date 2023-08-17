@@ -20,18 +20,27 @@ SOURCE_FOLDERS=$(find * -type d | egrep -v '.*__|.*/|^.git|^(build|dist|tests|ve
 # remove the contents of the build/ directory
 rm -rf build/*
 
+# copy the requirements.txt file to the build/ directory
+cp requirements.txt build/
+
+# remove local and/or unit testing references
+sed -i.bak -E '/Flask|pytest/d' build/requirements.txt
+rm build/requirements.txt.bak
+
 # install all dependencies into the build/ directory
-pip install -t build/ -r requirements.txt
+pip install -t build/ -r build/requirements.txt
+
+# remove all __pycache__ directory entries from the src/ directory
+find src -type d -name '*pycache*' -exec rm -rf {} \;
+
+# remove all .pytest_cache directory entries from the src/ directory
+find tests -type d -name '*pytest*' -exec rm -rf {} \;
 
 # copy all application contents to the build/ directory
-cp -rf $SOURCE_FOLDERS main.py requirements.txt build/
+cp -rf $SOURCE_FOLDERS main.py build/
 
 # enter the build/ directory
 cd build
-
-# remove local and/or unit testing references
-sed -i.bak -E '/(Flask|pytest)/d' requirements.txt
-rm requirements.txt.bak
 
 # zip the application contents
 zip -r ../dist/$FILENAME .
