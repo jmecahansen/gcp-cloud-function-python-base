@@ -7,9 +7,6 @@ from flask import Request, Response
 from src.application import ApplicationClass
 import pytest
 
-# create an empty request
-empty_request = Request({})
-
 
 @pytest.mark.parametrize("arguments, expectation ", [
     ({}, b"{\"status\":\"OK\"}"),
