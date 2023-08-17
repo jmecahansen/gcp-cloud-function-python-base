@@ -3,7 +3,7 @@ application (for testing purposes)
 """
 
 # aliases and/or imports
-from flask import Flask, request
+from flask import Flask, request, Response
 from src.application import ApplicationClass
 from traceback import format_exc
 
@@ -12,10 +12,10 @@ app = Flask(__name__)
 
 
 @app.route("/", methods=["GET", "POST"])
-def cloud_function():
+def cloud_function() -> Response or tuple[str, int]:
     """
     Cloud Function entry point
-    :return: a Response object
+    :return: a Response object or a tuple with the response contents (text content and HTTP response code)
     """
 
     try:
