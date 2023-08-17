@@ -8,7 +8,7 @@ from os.path import abspath, dirname, relpath
 # JSON encoding options
 json_encoding_options = {
     "ensure_ascii": False,
-    "separators": (":", ",")
+    "separators": (",", ":")
 }
 
 # root application path
