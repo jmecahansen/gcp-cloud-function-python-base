@@ -3,6 +3,7 @@ main application file
 """
 
 # aliases and/or imports
+from src.application import ApplicationClass
 from traceback import format_exc
 
 
@@ -14,6 +15,6 @@ def cloud_function(request):
     """
 
     try:
-        pass  # replace this with your code
+        return ApplicationClass(request).run()
     except Exception as e:
         return f"{e}\n\n{format_exc()}", 500
