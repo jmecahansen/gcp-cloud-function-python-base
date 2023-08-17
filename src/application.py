@@ -24,7 +24,7 @@ class ApplicationClass:
     def run(self) -> Response:
         """
         run the application
-        :return: a tuple with the response text and the appropriate response code
+        :return: a Response object
         """
 
         if not self.request:
