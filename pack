@@ -14,6 +14,9 @@ VERSION_COUNT=$(($(find ./dist -type f -name "*$BASENAME-$CURRENT_DATE*.zip" | w
 # compose the (final) filename
 FILENAME=$BASENAME-$CURRENT_DATE-v$VERSION_COUNT.zip
 
+# compose the list of source folders
+SOURCE_FOLDERS=$(find * -type d | egrep -v '.*__|.*/|^.git|^(build|dist|tests|venv)')
+
 # remove the contents of the build/ directory
 rm -rf build/*
 
@@ -21,10 +24,14 @@ rm -rf build/*
 pip install -t build/ -r requirements.txt
 
 # copy all application contents to the build/ directory
-cp -rf credentials/ src/ tests/ main.py requirements.txt build/
+cp -rf $SOURCE_FOLDERS main.py requirements.txt build/
 
 # enter the build/ directory
 cd build
+
+# remove local and/or unit testing references
+sed -i.bak -E '/(Flask|pytest)/d' requirements.txt
+rm requirements.txt.bak
 
 # zip the application contents
 zip -r ../dist/$FILENAME .
