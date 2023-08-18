@@ -15,7 +15,7 @@ app = Flask(__name__)
 def cloud_function() -> Response or tuple[str, int]:
     """
     Cloud Function entry point
-    :return: a Response object or a tuple with the response contents (text content and HTTP response code)
+    :return: a Response object or a tuple with the response contents (text content and status code)
     """
 
     try:

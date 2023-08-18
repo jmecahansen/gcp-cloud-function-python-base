@@ -12,7 +12,7 @@ def cloud_function(request: Request) -> Response or tuple[str, int]:
     """
     Cloud Function entry point
     :param request: the request object
-    :return: a Response object or a tuple with the response contents (text content and HTTP response code)
+    :return: a Response object or a tuple with the response contents (text content and status code)
     """
 
     try:
