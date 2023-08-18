@@ -8,7 +8,7 @@ from src.helpers.request import build_response
 import pytest
 
 
-@pytest.mark.parametrize("code, message, payload, expectation ", [
+@pytest.mark.parametrize("code, message, data, expectation ", [
     (200, "OK", [1, 2, 3, 4, 5], b"{\"data\":[1,2,3,4,5],\"message\":\"OK\",\"status\":\"OK\"}"),
     (200, "OK", {
         "foo": 1,
@@ -23,17 +23,17 @@ import pytest
 ])
 def test_response_matches_expectation(code: int,
                                       message: str,
-                                      payload: dict or list,
+                                      data: dict or list,
                                       expectation: str):
     """
     test the response matches its expectation
-    :param code: the HTTP response code
+    :param code: the status code
     :param message: the message included with the response
-    :param payload: the payload included with the response
+    :param data: the data included with the response
     :param expectation: the expected JSON-encoded output
     """
 
-    response = build_response(code, message, payload)
+    response = build_response(code, message, data)
     assert (
         isinstance(response, Response)
         and response.data == expectation
@@ -49,11 +49,11 @@ def test_response_matches_expectation(code: int,
     (410, b"{\"status\":\"ERROR\"}"),
     (500, b"{\"status\":\"ERROR\"}"),
 ])
-def test_response_without_message_or_payload_matches_expectation(code: int,
-                                                                 expectation: str):
+def test_response_without_message_or_data_matches_expectation(code: int,
+                                                              expectation: str):
     """
-    test the response (without message or payload) matches its expectation
-    :param code: the HTTP response code
+    test the response (without message or data) matches its expectation
+    :param code: the status code
     :param expectation: the expected JSON-encoded output
     """
 
@@ -68,12 +68,12 @@ def test_response_without_message_or_payload_matches_expectation(code: int,
     (200, "OK", b"{\"message\":\"OK\",\"status\":\"OK\"}"),
     (400, "missing field: foo", b"{\"message\":\"missing field: foo\",\"status\":\"ERROR\"}"),
 ])
-def test_response_without_payload_matches_expectation(code: int,
-                                                      message: str,
-                                                      expectation: str):
+def test_response_without_data_matches_expectation(code: int,
+                                                   message: str,
+                                                   expectation: str):
     """
-    test the response (without payload) matches its expectation
-    :param code: the HTTP response code
+    test the response (without data) matches its expectation
+    :param code: the status code
     :param message: the message included with the response
     :param expectation: the expected JSON-encoded output
     """
