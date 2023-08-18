@@ -33,7 +33,7 @@ pip install -t build/ -r build/requirements.txt
 # remove all __pycache__ directory entries from the src/ directory
 find src -type d -name '*pycache*' -exec rm -rf {} \;
 
-# remove all .pytest_cache directory entries from the src/ directory
+# remove all .pytest_cache directory entries from the tests/ directory
 find tests -type d -name '*pytest*' -exec rm -rf {} \;
 
 # copy all application contents to the build/ directory
