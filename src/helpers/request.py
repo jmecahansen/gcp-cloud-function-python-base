@@ -13,9 +13,9 @@ def build_response(code: int,
                    data: dict or list = None) -> Response:
     """
     builds a response object
-    :param code: the HTTP response code
-    :param message: the response message (optional)
-    :param data: the response data (optional)
+    :param code: the status code
+    :param message: the text message (optional)
+    :param data: the attached data (optional)
     :return: the response object
     """
 
