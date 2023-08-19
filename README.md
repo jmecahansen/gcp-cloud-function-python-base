@@ -29,7 +29,8 @@ haven't tested them)
 (you can provide a dictionary or a list as a payload), `message` (if you want an explicit message) and `status` (`OK`
 if the status code is `200 OK`, `ERROR` otherwise). An example of a successful response would be `{"status":"OK"}`
 along with a `200 OK` status code, whereas an example of an unsuccessful response would be `{"status":"ERROR"}` along 
-with its appropriate status code
+with its appropriate status code. If an exception occurs before a proper response can be sent it will be returned along
+with the traceback and a `500 Internal Server Error` status code
 
 ### Steps
 1. Clone the repository
