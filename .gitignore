@@ -1,0 +1,5 @@
+# (any) cache folder
+__pycache__
+
+# virtualenv folder
+venv
