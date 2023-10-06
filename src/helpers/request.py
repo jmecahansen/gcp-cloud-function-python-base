@@ -20,7 +20,6 @@ def build_response(code: int,
     """
 
     response = Response()
-    response.charset = "utf-8"
     response.data = dumps({key: value for key, value in {
         "data": data,
         "message": message,
