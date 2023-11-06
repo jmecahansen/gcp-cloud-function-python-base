@@ -4,7 +4,7 @@ application
 
 # aliases and/or imports
 from flask import Request, Response
-from src.helpers.request import build_response
+from src.helpers.request import build_response, get_data
 
 
 class ApplicationClass:
