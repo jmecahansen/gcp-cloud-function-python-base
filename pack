@@ -14,6 +14,10 @@ VERSION_COUNT=$(($(find ./dist -type f -name "*$BASENAME-$CURRENT_DATE*.zip" | w
 # compose the (final) filename
 FILENAME=$BASENAME-$CURRENT_DATE-v$VERSION_COUNT.zip
 
+# fetch (and compose) the list of pre-packaged Python libraries
+PREPACKAGED_LIBRARIES=$(wget -q -O- https://raw.githubusercontent.com/GoogleCloudPlatform/buildpacks/af44f02668ce11175634137df2a406655addd69c/cmd/python/functions_framework/converter/requirements.txt | sed 's/==.*//g' | sed '/^$/d' | tr '\n' '|' | sed 's/.$//')
+PREPACKAGED_LIBRARIES_PATTERN="/$PREPACKAGED_LIBRARIES|pytest/d"
+
 # compose the list of source folders
 SOURCE_FOLDERS=$(find * -type d | egrep -v '.*__|.*/|^.git|^(build|dist|tests|venv)')
 
@@ -24,7 +28,7 @@ rm -rf build/*
 cp requirements.txt build/
 
 # remove local and/or unit testing references
-sed -i.bak -E '/Flask|pytest/d' build/requirements.txt
+sed -i.bak -E $PREPACKAGED_LIBRARIES_PATTERN build/requirements.txt
 rm build/requirements.txt.bak
 
 # install all dependencies into the build/ directory
