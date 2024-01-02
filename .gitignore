@@ -1,5 +1,9 @@
+# (any) descriptor file
+.DS_Store
+
 # (any) cache folder
 __pycache__
+__pytest__
 
 # virtualenv folder
 venv
