@@ -3,7 +3,7 @@
 
 # (any) cache folder
 __pycache__
-__pytest__
+.pytest_cache
 
 # virtualenv folder
 venv
