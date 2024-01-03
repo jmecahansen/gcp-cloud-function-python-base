@@ -47,7 +47,7 @@ cp -rf $SOURCE_FOLDERS main.py build/
 cd build
 
 # zip the application contents
-zip -r ../dist/$FILENAME .
+zip -r -9 ../dist/$FILENAME .
 
 # return to the application root directory
 cd ..
