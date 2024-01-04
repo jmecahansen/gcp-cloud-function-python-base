@@ -34,11 +34,11 @@ rm build/requirements.txt.bak
 # install all dependencies into the build/ directory
 pip install -t build/ -r build/requirements.txt
 
-# remove all __pycache__ directory entries from the src/ directory
-find src -type d -name '*pycache*' -exec rm -rf {} \;
+# remove all __pycache__ directory entries
+find . -type d -name '*pycache*' -prune -exec rm -rf {} \;
 
-# remove all .pytest_cache directory entries from the tests/ directory
-find tests -type d -name '*pytest*' -exec rm -rf {} \;
+# remove all .pytest_cache directory entries
+find . -type d -name '*pytest*' -prune -exec rm -rf {} \;
 
 # copy all application contents to the build/ directory
 cp -rf $SOURCE_FOLDERS main.py build/
@@ -47,7 +47,7 @@ cp -rf $SOURCE_FOLDERS main.py build/
 cd build
 
 # zip the application contents
-zip -r -9 ../dist/$FILENAME .
+zip -q -r -9 ../dist/$FILENAME .
 
 # return to the application root directory
 cd ..
