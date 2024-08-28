@@ -2,6 +2,10 @@
 
 # script to pack the application contents (files, scripts, etc.) into a .zip file for uploading as a Cloud Function
 
+# go to the script directory
+# https://stackoverflow.com/a/29835459
+cd $(CDPATH= cd -- "$(dirname -- "$0")" && pwd -P)
+
 # fetch the current date
 CURRENT_DATE=$(date +%Y-%m-%d)
 

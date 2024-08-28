@@ -2,5 +2,9 @@
 
 # script to clear the dist/ directory contents
 
+# go to the script directory
+# https://stackoverflow.com/a/29835459
+cd $(CDPATH= cd -- "$(dirname -- "$0")" && pwd -P)
+
 # remove the contents of the build/ directory
 rm -rf dist/*
